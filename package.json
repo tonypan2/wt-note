@@ -1,0 +1,56 @@
+{
+  "name": "git-note-statusbar",
+  "displayName": "Git Note Status Bar",
+  "description": "Display workspace-specific notes in VS Code status bar. 100% local storage using git config.",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/git-note-statusbar"
+  },
+  "categories": ["Other"],
+  "keywords": ["git", "worktree", "notes", "status bar", "productivity"],
+  "icon": "icons/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "engines": { "vscode": "^1.85.0" },
+  "scripts": {
+    "compile": "tsc",
+    "package": "npm run compile && vsce package --out out/git-note-statusbar.vsix",
+    "build": "npm run package",
+    "install-extension": "npm run build && code --install-extension out/git-note-statusbar.vsix"
+  },
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:gitNote.editInline",
+    "onCommand:gitNote.refresh",
+    "onCommand:gitNote.enableWorktreeConfig",
+    "onCommand:gitNote.disableWorktreeConfig"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "gitNote.editInline", "title": "Git Note: Edit" },
+      { "command": "gitNote.refresh", "title": "Git Note: Refresh" },
+      { "command": "gitNote.enableWorktreeConfig", "title": "Git Note: Enable workspace-specific notes" },
+      { "command": "gitNote.disableWorktreeConfig", "title": "Git Note: Disable workspace-specific notes" }
+    ],
+    "configuration": {
+      "title": "Git Note",
+      "properties": {
+        "gitNote.statusBarMaxLength": {
+          "type": "number",
+          "default": 60,
+          "description": "Maximum characters shown in the status bar."
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.0.0"
+  }
+}
