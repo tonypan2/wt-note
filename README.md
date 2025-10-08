@@ -35,7 +35,7 @@ Each repository and worktree can have its own separate note, helping you track w
 Notes are stored using Git's worktree configuration system:
 - When enabled, notes are stored via `git config --worktree worktree.note "your note"`
 - Regular repos: Stored in `.git/config.worktree`
-- Worktrees: Stored in `.git/worktrees/*/config`
+- Worktrees: Stored in `.git/worktrees/*/config.worktree`
 - **No cloud sync**: Notes are never uploaded anywhere - they live only in your local git configuration files
 
 ### Simple & Consistent
